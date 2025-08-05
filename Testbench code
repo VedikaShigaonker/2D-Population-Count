@@ -1,0 +1,41 @@
+
+
+module tb;
+    reg [15:0] matrix;
+    wire [2:0] row_count0, row_count1, row_count2, row_count3;
+    wire [2:0] col_count0, col_count1, col_count2, col_count3;
+    wire [4:0] total_count;
+    
+PopCount2D uut (
+        .matrix(matrix),
+        .row_count0(row_count0),
+        .row_count1(row_count1),
+        .row_count2(row_count2),
+        .row_count3(row_count3),
+        .col_count0(col_count0),
+        .col_count1(col_count1),
+        .col_count2(col_count2),
+        .col_count3(col_count3),
+        .total_count(total_count)
+    );
+
+    initial begin
+        
+        // Test Case 1: Random pattern
+        matrix = 16'b1101_1010_0111_0001;
+        #10;
+    
+        // Test Case 2
+        matrix = 16'hFFFF;
+        #10;
+
+        // Test Case 3
+        matrix = 16'h0000;
+        #10;
+
+        // Test Case 4
+        matrix = 16'b1010_0101_1010_0101;
+        #10;
+        
+    end
+endmodule
