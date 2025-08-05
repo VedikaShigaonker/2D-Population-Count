@@ -1,0 +1,33 @@
+module PopCount2D (
+    input [15:0] matrix,  // 4x4 matrix 
+    output [2:0] row_count0, row_count1, row_count2, row_count3,
+    output [2:0] col_count0, col_count1, col_count2, col_count3,
+    output [4:0] total_count
+);
+ 
+wire [3:0] row0, row1, row2, row3;
+wire [3:0] col0, col1, col2, col3;
+
+assign row0 = matrix[15:12];
+assign row1 = matrix[11:8];
+assign row2 = matrix[7:4];
+assign row3 = matrix[3:0];
+
+assign row_count0 = row0[0] + row0[1] + row0[2] + row0[3];
+assign row_count1 = row1[0] + row1[1] + row1[2] + row1[3];
+assign row_count2 = row2[0] + row2[1] + row2[2] + row2[3];
+assign row_count3 = row3[0] + row3[1] + row3[2] + row3[3];
+
+assign col3 = {row0[0], row1[0], row2[0], row3[0]};
+assign col2 = {row0[1], row1[1], row2[1], row3[1]};
+assign col1 = {row0[2], row1[2], row2[2], row3[2]};
+assign col0 = {row0[3], row1[3], row2[3], row3[3]};
+
+assign col_count0 = col0[0] + col0[1] + col0[2] + col0[3];
+assign col_count1 = col1[0] + col1[1] + col1[2] + col1[3];
+assign col_count2 = col2[0] + col2[1] + col2[2] + col2[3];
+assign col_count3 = col3[0] + col3[1] + col3[2] + col3[3];
+
+assign total_count = row_count0 + row_count1 + row_count2 + row_count3;
+
+endmodule
